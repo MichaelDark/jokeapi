@@ -1,6 +1,7 @@
 name: jokeapi
-description: API wrapper for jokeapi.dev
 version: 0.0.1
+description: API wrapper for jokeapi.dev
+repository: https://github.com/MichaelDark/jokeapi
 
 environment:
   sdk: '>=2.15.1 <3.0.0'

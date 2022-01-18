@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 
-import 'models/request_options/options.dart';
-import 'models/requests_options.dart';
+import 'models/options.dart';
+import 'models/request_options/request_options.dart';
 
 // TODO(mike): Add missing endpoints POST  https://v2.jokeapi.dev/submit
 // TODO(mike): Add error handling

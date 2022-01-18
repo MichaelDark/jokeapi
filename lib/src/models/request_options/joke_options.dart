@@ -1,5 +1,5 @@
 import '../enums.dart';
-import 'options.dart';
+import 'request_options.dart';
 
 class JokeOptions implements RequestOptions {
   final List<JokeCategory> categories;
