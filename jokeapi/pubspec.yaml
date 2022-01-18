@@ -1,0 +1,17 @@
+name: jokeapi
+description: API wrapper for jokeapi.dev
+version: 0.0.1
+
+environment:
+  sdk: '>=2.15.1 <3.0.0'
+
+dependencies:
+  http: ^0.13.4
+  json_annotation: ^4.4.0
+  recase: ^4.0.0
+
+dev_dependencies:
+  test: ^1.16.0
+  build_runner: ^2.1.7
+  json_serializable: ^6.1.4
+  lints: ^1.0.0
