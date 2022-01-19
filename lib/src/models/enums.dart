@@ -25,5 +25,3 @@ class JokeIdRange {
     return to == null ? '$from' : '$from-$to';
   }
 }
-
-enum JokeType { single, twopart }

@@ -1,10 +1,59 @@
 import '../enums.dart';
 import 'request_options.dart';
 
-class JokeOptions implements RequestOptions {
+enum _JokeType { single, twopart }
+
+class SingleJokeOptions extends _JokeOptions {
+  SingleJokeOptions(
+    List<JokeCategory> categories, {
+    JokeFormat? format,
+    List<JokeBlacklistFlag>? blacklistFlags,
+    String? lang,
+    JokeIdRange? idRange,
+    String? contains,
+    bool safeMode = false,
+  }) : super(
+          categories,
+          format: format,
+          blacklistFlags: blacklistFlags,
+          lang: lang,
+          amount: 1,
+          idRange: idRange,
+          contains: contains,
+          safeMode: safeMode,
+        );
+
+  @override
+  _JokeType get type => _JokeType.single;
+}
+
+class TwoPartJokeOptions extends _JokeOptions {
+  TwoPartJokeOptions(
+    List<JokeCategory> categories, {
+    JokeFormat? format,
+    List<JokeBlacklistFlag>? blacklistFlags,
+    String? lang,
+    JokeIdRange? idRange,
+    String? contains,
+    bool safeMode = false,
+  }) : super(
+          categories,
+          format: format,
+          blacklistFlags: blacklistFlags,
+          lang: lang,
+          amount: 1,
+          idRange: idRange,
+          contains: contains,
+          safeMode: safeMode,
+        );
+
+  @override
+  _JokeType get type => _JokeType.twopart;
+}
+
+abstract class _JokeOptions implements RequestOptions {
   final List<JokeCategory> categories;
   final JokeFormat? format;
-  final JokeType? type;
   final List<JokeBlacklistFlag>? blacklistFlags;
   final String? lang;
   final int? amount;
@@ -12,10 +61,9 @@ class JokeOptions implements RequestOptions {
   final String? contains;
   final bool safeMode;
 
-  JokeOptions(
+  _JokeOptions(
     this.categories, {
     this.format,
-    this.type,
     this.blacklistFlags,
     this.lang,
     this.amount,
@@ -23,6 +71,8 @@ class JokeOptions implements RequestOptions {
     this.contains,
     this.safeMode = false,
   });
+
+  _JokeType get type;
 
   @override
   List<String> get pathSegments {
@@ -36,10 +86,10 @@ class JokeOptions implements RequestOptions {
   @override
   Map<String, dynamic> get queryParameters {
     return {
+      'type': type.name,
       if (safeMode) 'safeMode': null,
       if (format != null) 'format': format!.name,
       if (lang != null) 'lang': lang,
-      if (type != null) 'type': type!.name,
       if (amount != null) 'amount': '$amount',
       if (idRange != null) 'idRange': idRange!.toQuery(),
       if (contains != null) 'contains': contains,

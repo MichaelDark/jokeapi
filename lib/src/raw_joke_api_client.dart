@@ -4,20 +4,22 @@ import 'models/options.dart';
 import 'models/request_options/request_options.dart';
 
 // TODO(mike): Add missing endpoints POST  https://v2.jokeapi.dev/submit
-// TODO(mike): Add error handling
-// TODO(mike): Add client client with parsing
-class RawJokeClient {
+class RawJokeApiClient {
   static const _defaultHostname = 'v2.jokeapi.dev';
 
   final String hostname;
   final http.Client client;
 
-  RawJokeClient({
+  RawJokeApiClient({
     this.hostname = _defaultHostname,
     http.Client? client,
   }) : client = client ?? http.Client();
 
-  Future<http.Response> getJoke(JokeOptions options) async {
+  Future<http.Response> getSingleJoke(SingleJokeOptions options) async {
+    return _makeApiCall("joke", options);
+  }
+
+  Future<http.Response> getTwoPartJoke(TwoPartJokeOptions options) async {
     return _makeApiCall("joke", options);
   }
 
@@ -70,6 +72,7 @@ class RawJokeClient {
           ? null
           : queryParameters,
     );
+
     final response = await client.get(uri);
     return response;
   }

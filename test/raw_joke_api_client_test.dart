@@ -1,16 +1,26 @@
 import 'package:jokeapi/jokeapi.dart';
 import 'package:test/test.dart';
 
-// TODO(mike): Add tests
 void main() {
   group('RawJokeClient', () {
-    final client = RawJokeClient();
+    final client = RawJokeApiClient();
 
     test(
-      'Get Joke',
+      'Get Single Joke',
       () async {
-        final response = await client.getJoke(
-          JokeOptions([JokeCategory.any]),
+        final response = await client.getSingleJoke(
+          SingleJokeOptions([JokeCategory.any]),
+        );
+        print(response.body);
+      },
+      skip: true,
+    );
+
+    test(
+      'Get Two-Part Joke',
+      () async {
+        final response = await client.getTwoPartJoke(
+          TwoPartJokeOptions([JokeCategory.any]),
         );
         print(response.body);
       },
