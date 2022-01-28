@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'models/options.dart';
 import 'models/request_options/request_options.dart';
 
-// TODO(mike): Add missing endpoints POST  https://v2.jokeapi.dev/submit
+// TODO(mike): Add missing endpoint POST  https://v2.jokeapi.dev/submit
 class RawJokeApiClient {
   static const _defaultHostname = 'v2.jokeapi.dev';
 

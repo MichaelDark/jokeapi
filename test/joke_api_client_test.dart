@@ -1,106 +1,46 @@
+import 'dart:convert';
+
 import 'package:jokeapi/jokeapi.dart';
 import 'package:jokeapi/src/joke_api_client.dart';
+import 'package:jokeapi/src/models/single_joke.dart';
+import 'package:jokeapi/src/models/two_part_joke.dart';
 import 'package:test/test.dart';
 
-// TODO(mike): Add tests
+import 'mocks/mock_http_client.dart';
+
 void main() {
-  group('JokeClient', () {
-    final client = JokeApiClient();
+  group('JokeApiClient', () {
+    final mockClient = createMockClient();
+    final rawClient = RawJokeApiClient(client: mockClient);
+    final client = JokeApiClient(client: rawClient);
 
-    test(
-      'Get Single Joke',
-      () async {
-        final response = await client.getSingleJoke(
-          SingleJokeOptions([JokeCategory.any]),
-        );
-        print(response.toJson());
-      },
-      // skip: true,
-    );
+    Future<void> testCall<T>(
+      Future<T> call,
+      Future<String> expectedResponse,
+      T Function(Map<String, dynamic>) mapper,
+    ) async {
+      final response = await call;
 
-    test(
-      'Get Two-Part Joke',
-      () async {
-        final response = await client.getTwoPartJoke(
-          TwoPartJokeOptions([JokeCategory.any]),
-        );
-        print(response.toJson());
-      },
-      // skip: true,
-    );
+      print(response);
 
-    //   test(
-    //     'Get Info',
-    //     () async {
-    //       final response = await client.getInfo();
-    //       print(response.body);
-    //     },
-    //     skip: true,
-    //   );
+      final expectedJson = jsonDecode(await expectedResponse);
+      expect(response, equals(mapper(expectedJson)));
+    }
 
-    //   test(
-    //     'Get Categories',
-    //     () async {
-    //       final response = await client.getCategories();
-    //       print(response.body);
-    //     },
-    //     skip: true,
-    //   );
+    test('getSingleJoke', () async {
+      await testCall(
+        client.getSingleJoke(SingleJokeOptions([JokeCategory.any])),
+        MockResponse.singleJoke(),
+        SingleJoke.fromJson,
+      );
+    });
 
-    //   test(
-    //     'Get Langcode',
-    //     () async {
-    //       final response = await client.getLangCode(
-    //         LangCodeOptions('asdasdasdasdasd'),
-    //       );
-    //       print(response.body);
-    //     },
-    //     // skip: true,
-    //   );
-
-    //   test(
-    //     'Get Languages',
-    //     () async {
-    //       final response = await client.getLanguages();
-    //       print(response.body);
-    //     },
-    //     skip: true,
-    //   );
-
-    //   test(
-    //     'Get Flags',
-    //     () async {
-    //       final response = await client.getFlags();
-    //       print(response.body);
-    //     },
-    //     skip: true,
-    //   );
-
-    //   test(
-    //     'Get Formats',
-    //     () async {
-    //       final response = await client.getFormats();
-    //       print(response.body);
-    //     },
-    //     skip: true,
-    //   );
-
-    //   test(
-    //     'Ping!',
-    //     () async {
-    //       final response = await client.ping();
-    //       print(response.body);
-    //     },
-    //     skip: true,
-    //   );
-
-    //   test(
-    //     'Get Endpoints',
-    //     () async {
-    //       final response = await client.getEndpoints();
-    //       print(response.body);
-    //     },
-    //     skip: true,
-    //   );
+    test('getTwoPartJoke', () async {
+      await testCall(
+        client.getTwoPartJoke(TwoPartJokeOptions([JokeCategory.any])),
+        MockResponse.twoPartJoke(),
+        TwoPartJoke.fromJson,
+      );
+    });
   });
 }

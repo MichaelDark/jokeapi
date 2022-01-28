@@ -34,4 +34,27 @@ class JokeFlags {
     data['explicit'] = explicit;
     return data;
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is JokeFlags &&
+        other.nsfw == nsfw &&
+        other.religious == religious &&
+        other.political == political &&
+        other.racist == racist &&
+        other.sexist == sexist &&
+        other.explicit == explicit;
+  }
+
+  @override
+  int get hashCode {
+    return nsfw.hashCode ^
+        religious.hashCode ^
+        political.hashCode ^
+        racist.hashCode ^
+        sexist.hashCode ^
+        explicit.hashCode;
+  }
 }

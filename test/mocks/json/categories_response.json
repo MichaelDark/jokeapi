@@ -1,0 +1,31 @@
+{
+    "error": false,
+    "categories": [
+        "Any",
+        "Misc",
+        "Programming",
+        "Dark",
+        "Pun",
+        "Spooky",
+        "Christmas"
+    ],
+    "categoryAliases": [
+        {
+            "alias": "Miscellaneous",
+            "resolved": "Misc"
+        },
+        {
+            "alias": "Coding",
+            "resolved": "Programming"
+        },
+        {
+            "alias": "Development",
+            "resolved": "Programming"
+        },
+        {
+            "alias": "Halloween",
+            "resolved": "Spooky"
+        }
+    ],
+    "timestamp": 1643391069973
+}

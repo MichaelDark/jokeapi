@@ -1,0 +1,126 @@
+[
+    {
+        "name": "Categories",
+        "description": "Returns a list of all available categories and category aliases",
+        "usage": {
+            "method": "GET",
+            "url": "https://v2.jokeapi.dev/categories",
+            "supportedParams": [
+                "format",
+                "lang"
+            ]
+        }
+    },
+    {
+        "name": "Endpoints",
+        "description": "Returns a list of all endpoints and how to use them",
+        "usage": {
+            "method": "GET",
+            "url": "https://v2.jokeapi.dev/endpoints",
+            "supportedParams": [
+                "format"
+            ]
+        }
+    },
+    {
+        "name": "Flags",
+        "description": "Returns a list of all available blacklist flags",
+        "usage": {
+            "method": "GET",
+            "url": "https://v2.jokeapi.dev/flags",
+            "supportedParams": [
+                "format",
+                "lang"
+            ]
+        }
+    },
+    {
+        "name": "Formats",
+        "description": "Returns a list of all available response file formats",
+        "usage": {
+            "method": "GET",
+            "url": "https://v2.jokeapi.dev/formats",
+            "supportedParams": [
+                "format",
+                "lang"
+            ]
+        }
+    },
+    {
+        "name": "Info",
+        "description": "Returns a lot of information about JokeAPI and its jokes",
+        "usage": {
+            "method": "GET",
+            "url": "https://v2.jokeapi.dev/info",
+            "supportedParams": [
+                "format",
+                "lang"
+            ]
+        }
+    },
+    {
+        "name": "Joke",
+        "description": "Returns a joke from the specified category / categories that is also matching the provided (optional) filters",
+        "usage": {
+            "method": "GET",
+            "url": "https://v2.jokeapi.dev/joke/{CATEGORY}",
+            "supportedParams": [
+                "safe-mode",
+                "format",
+                "blacklistFlags",
+                "type",
+                "contains",
+                "idRange",
+                "lang",
+                "amount"
+            ]
+        }
+    },
+    {
+        "name": "LangCodes",
+        "description": "Returns the language code of the specified language",
+        "usage": {
+            "method": "GET",
+            "url": "https://v2.jokeapi.dev/langcode/{LANGUAGE}",
+            "supportedParams": [
+                "format",
+                "lang"
+            ]
+        }
+    },
+    {
+        "name": "Languages",
+        "description": "Returns a list of supported and partially supported languages",
+        "usage": {
+            "method": "GET",
+            "url": "https://v2.jokeapi.dev/languages",
+            "supportedParams": [
+                "format",
+                "lang"
+            ]
+        }
+    },
+    {
+        "name": "Ping",
+        "description": "Can be used to check if JokeAPI is online",
+        "usage": {
+            "method": "GET",
+            "url": "https://v2.jokeapi.dev/ping",
+            "supportedParams": [
+                "format",
+                "lang"
+            ]
+        }
+    },
+    {
+        "name": "Submit",
+        "description": "Used to submit a joke to be added to JokeAPI",
+        "usage": {
+            "method": "POST",
+            "url": "https://v2.jokeapi.dev/submit",
+            "supportedParams": [
+                "dry-run"
+            ]
+        }
+    }
+]

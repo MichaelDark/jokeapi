@@ -1,0 +1,18 @@
+{
+    "error": false,
+    "category": "Christmas",
+    "type": "twopart",
+    "setup": "How will Christmas dinner be different after Brexit?",
+    "delivery": "No Brussels!",
+    "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": true,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+    },
+    "id": 251,
+    "safe": false,
+    "lang": "en"
+}

@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+
 // TODO(mike): Add enums parsing
 class JokeApiError {
   final bool? error;
@@ -37,5 +39,31 @@ class JokeApiError {
     data['additionalInfo'] = additionalInfo;
     data['timestamp'] = timestamp;
     return data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    final listEquals = const DeepCollectionEquality().equals;
+
+    return other is JokeApiError &&
+        other.error == error &&
+        other.internalError == internalError &&
+        other.code == code &&
+        other.message == message &&
+        listEquals(other.causedBy, causedBy) &&
+        other.additionalInfo == additionalInfo &&
+        other.timestamp == timestamp;
+  }
+
+  @override
+  int get hashCode {
+    return error.hashCode ^
+        internalError.hashCode ^
+        code.hashCode ^
+        message.hashCode ^
+        causedBy.hashCode ^
+        additionalInfo.hashCode ^
+        timestamp.hashCode;
   }
 }

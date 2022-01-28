@@ -4,7 +4,6 @@ import 'joke_flags.dart';
 class TwoPartJoke {
   final bool? error;
   final String? category;
-  final String? type;
   final String? setup;
   final String? delivery;
   final JokeFlags? flags;
@@ -15,7 +14,6 @@ class TwoPartJoke {
   TwoPartJoke({
     this.error,
     this.category,
-    this.type,
     this.setup,
     this.delivery,
     this.flags,
@@ -27,7 +25,6 @@ class TwoPartJoke {
   TwoPartJoke.fromJson(Map<String, dynamic> json)
       : error = json['error'],
         category = json['category'],
-        type = json['type'],
         setup = json['setup'],
         delivery = json['delivery'],
         flags =
@@ -40,7 +37,6 @@ class TwoPartJoke {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['error'] = error;
     data['category'] = category;
-    data['type'] = type;
     data['setup'] = setup;
     data['delivery'] = delivery;
     if (flags != null) {
@@ -50,5 +46,32 @@ class TwoPartJoke {
     data['safe'] = safe;
     data['lang'] = lang;
     return data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is TwoPartJoke &&
+        other.error == error &&
+        other.category == category &&
+        other.setup == setup &&
+        other.delivery == delivery &&
+        other.flags == flags &&
+        other.id == id &&
+        other.safe == safe &&
+        other.lang == lang;
+  }
+
+  @override
+  int get hashCode {
+    return error.hashCode ^
+        category.hashCode ^
+        setup.hashCode ^
+        delivery.hashCode ^
+        flags.hashCode ^
+        id.hashCode ^
+        safe.hashCode ^
+        lang.hashCode;
   }
 }

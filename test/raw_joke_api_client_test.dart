@@ -1,104 +1,73 @@
+import 'package:http/http.dart';
 import 'package:jokeapi/jokeapi.dart';
 import 'package:test/test.dart';
 
+import 'mocks/mock_http_client.dart';
+
 void main() {
-  group('RawJokeClient', () {
-    final client = RawJokeApiClient();
+  group('RawJokeApiClient', () {
+    final mockClient = createMockClient();
+    final client = RawJokeApiClient(client: mockClient);
 
-    test(
-      'Get Single Joke',
-      () async {
-        final response = await client.getSingleJoke(
-          SingleJokeOptions([JokeCategory.any]),
-        );
-        print(response.body);
-      },
-      skip: true,
-    );
+    Future<void> testCall(
+      Future<Response> call,
+      Future<String> expectedResponse,
+    ) async {
+      final response = await call;
 
-    test(
-      'Get Two-Part Joke',
-      () async {
-        final response = await client.getTwoPartJoke(
-          TwoPartJokeOptions([JokeCategory.any]),
-        );
-        print(response.body);
-      },
-      skip: true,
-    );
+      print(response.body);
 
-    test(
-      'Get Info',
-      () async {
-        final response = await client.getInfo();
-        print(response.body);
-      },
-      skip: true,
-    );
+      expect(response.body, await expectedResponse);
+      expect(response.statusCode, 200);
+    }
 
-    test(
-      'Get Categories',
-      () async {
-        final response = await client.getCategories();
-        print(response.body);
-      },
-      skip: true,
-    );
+    test('getSingleJoke', () async {
+      await testCall(
+        client.getSingleJoke(SingleJokeOptions([JokeCategory.any])),
+        MockResponse.singleJoke(),
+      );
+    });
 
-    test(
-      'Get Langcode',
-      () async {
-        final response = await client.getLangCode(
-          LangCodeOptions('sw3d1sh'),
-        );
-        print(response.body);
-      },
-      skip: true,
-    );
+    test('getTwoPartJoke', () async {
+      await testCall(
+        client.getTwoPartJoke(TwoPartJokeOptions([JokeCategory.any])),
+        MockResponse.twoPartJoke(),
+      );
+    });
 
-    test(
-      'Get Languages',
-      () async {
-        final response = await client.getLanguages();
-        print(response.body);
-      },
-      skip: true,
-    );
+    test('getInfo', () async {
+      await testCall(client.getInfo(), MockResponse.info());
+    });
 
-    test(
-      'Get Flags',
-      () async {
-        final response = await client.getFlags();
-        print(response.body);
-      },
-      skip: true,
-    );
+    test('getCategories', () async {
+      await testCall(client.getCategories(), MockResponse.categories());
+    });
 
-    test(
-      'Get Formats',
-      () async {
-        final response = await client.getFormats();
-        print(response.body);
-      },
-      skip: true,
-    );
+    test('getLangCode', () async {
+      await testCall(
+        client.getLangCode(LangCodeOptions('sw3d1sh')),
+        MockResponse.langcode(),
+      );
+    });
 
-    test(
-      'Ping!',
-      () async {
-        final response = await client.ping();
-        print(response.body);
-      },
-      skip: true,
-    );
+    test('getLanguages', () async {
+      await testCall(client.getLanguages(), MockResponse.languages());
+    });
 
-    test(
-      'Get Endpoints',
-      () async {
-        final response = await client.getEndpoints();
-        print(response.body);
-      },
-      skip: true,
-    );
+    test('getFlags', () async {
+      await testCall(client.getFlags(), MockResponse.flags());
+    });
+
+    test('getFormats', () async {
+      await testCall(client.getFormats(), MockResponse.formats());
+    });
+
+    test('ping', () async {
+      await testCall(client.ping(), MockResponse.ping());
+    });
+
+    test('getEndpoints', () async {
+      await testCall(client.getEndpoints(), MockResponse.endpoints());
+    });
   });
 }
