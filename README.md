@@ -6,13 +6,21 @@ API wrapper for jokeapi.dev
 
 ## Features
 
-- `RawJokeClient`, that performs raw requests to the JokeAPI.
+- `RawJokeApiClient`, that performs raw requests to the JokeAPI.
+- `JokeApiClient`, that performs requests to the JokeAPI.
 
 ## Usage
 
-To execute requests and get raw responses, use `RawJokeClient`:
+To execute requests and get raw responses, use `RawJokeApiClient`:
 
 ```dart
-const jokeClient = RawJokeClient();
-jokeClient.getJoke(JokeOptions([JokeCategory.any]));
+final jokeClient = RawJokeApiClient();
+final jokeResponse = await jokeClient.getJoke(JokeOptions([JokeCategory.any]));
+```
+
+To execute requests and get responses wrapped with built-in models, use `JokeApiClient`:
+
+```dart
+final jokeClient = JokeApiClient();
+final joke = await getSingleJoke(SingleJokeOptions([JokeCategory.any]));
 ```
