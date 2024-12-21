@@ -1,5 +1,5 @@
 name: jokeapi
-version: 1.0.0
+version: 1.0.1
 description: Get various jokes from JokeAPI without any API token, membership, registration or payment.
 repository: https://github.com/MichaelDark/jokeapi
 
