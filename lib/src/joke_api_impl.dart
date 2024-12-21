@@ -26,6 +26,9 @@ final class _JokeApi implements JokeApi {
             .join(','),
       ),
       queryParameters: {
+        if (safeMode) ...{
+          'safe-mode': null,
+        },
         if (blacklistFlags case var flags? when flags.isNotEmpty) ...{
           'blacklistFlags': flags.map((flag) => flag.code),
         },
@@ -40,7 +43,6 @@ final class _JokeApi implements JokeApi {
         if (lang case var lang? when lang.isNotEmpty) 'lang': lang,
         if (amount case var amount? when amount > 1) 'amount': '$amount',
         if (type != null) 'type': type.code,
-        'safe-mode': safeMode,
         'format': 'json',
       },
     );

@@ -1,6 +1,6 @@
 # 😂 jokeapi 😂
 
-## ⚠ Note: due to the different types of humor, JokeAPI contains a wide variety of jokes, of which some are very offensive. They can be filtered out using the blacklistFlags or safe-mode parameters, but use this API at your own risk!
+## 🚨 Note: due to the different types of humor, JokeAPI contains a wide variety of jokes, of which some are very offensive. They can be filtered out using the blacklistFlags or safe-mode parameters, but use this API at your own risk!
 
 Dart client for [JokeAPI](https://jokeapi.dev/).
 

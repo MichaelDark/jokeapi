@@ -10,7 +10,7 @@ JokesResponse _$JokesResponseFromJson(Map<String, dynamic> json) =>
     JokesResponse(
       error: json['error'] as bool,
       jokes: const JokeListJsonConverter()
-          .fromJson(_readWholeJson(json, 'joke') as Map),
+          .fromJson(_readWholeJson(json, 'jokes') as Map),
     );
 
 Flags _$FlagsFromJson(Map<String, dynamic> json) => Flags(
