@@ -9,11 +9,11 @@ part of 'jokes_response.dart';
 JokesResponse _$JokesResponseFromJson(Map<String, dynamic> json) =>
     JokesResponse(
       error: json['error'] as bool,
-      jokes: const JokeListJsonConverter()
+      jokes: const JokeListJsonConverter._()
           .fromJson(_readWholeJson(json, 'jokes') as Map),
     );
 
-Flags _$FlagsFromJson(Map<String, dynamic> json) => Flags(
+JokeFlags _$JokeFlagsFromJson(Map<String, dynamic> json) => JokeFlags(
       nsfw: json['nsfw'] as bool,
       religious: json['religious'] as bool,
       political: json['political'] as bool,
@@ -26,7 +26,7 @@ SingleJoke _$SingleJokeFromJson(Map<String, dynamic> json) => SingleJoke(
       joke: json['joke'] as String,
       category: json['category'] as String,
       type: json['type'] as String,
-      flags: Flags.fromJson(json['flags'] as Map<String, dynamic>),
+      flags: JokeFlags.fromJson(json['flags'] as Map<String, dynamic>),
       id: (json['id'] as num).toInt(),
       safe: json['safe'] as bool,
       lang: json['lang'] as String,
@@ -37,7 +37,7 @@ TwoPartJoke _$TwoPartJokeFromJson(Map<String, dynamic> json) => TwoPartJoke(
       delivery: json['delivery'] as String,
       category: json['category'] as String,
       type: json['type'] as String,
-      flags: Flags.fromJson(json['flags'] as Map<String, dynamic>),
+      flags: JokeFlags.fromJson(json['flags'] as Map<String, dynamic>),
       id: (json['id'] as num).toInt(),
       safe: json['safe'] as bool,
       lang: json['lang'] as String,

@@ -10,6 +10,7 @@ void main() async {
   ];
 
   for (final joke in jokes) {
+    print('Let me tell you a joke!');
     switch (joke) {
       case SingleJoke():
         print(joke.joke);
@@ -17,5 +18,7 @@ void main() async {
         print(joke.setup);
         print(joke.delivery);
     }
+    print('Did you get it?');
+    print('');
   }
 }

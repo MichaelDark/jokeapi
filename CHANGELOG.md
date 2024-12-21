@@ -1,3 +1,8 @@
+## 1.0.1
+
+- Update `http` from `^0.13.4` to `^1.2.2`.
+- Update documentation.
+
 ## 1.0.0
 
 - Rework and simplify API.

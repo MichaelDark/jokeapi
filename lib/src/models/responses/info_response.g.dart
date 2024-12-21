@@ -9,7 +9,7 @@ part of 'info_response.dart';
 InfoResponse _$InfoResponseFromJson(Map<String, dynamic> json) => InfoResponse(
       error: json['error'] as bool,
       version: json['version'] as String,
-      jokes: Jokes.fromJson(json['jokes'] as Map<String, dynamic>),
+      jokes: JokesInfo.fromJson(json['jokes'] as Map<String, dynamic>),
       formats:
           (json['formats'] as List<dynamic>).map((e) => e as String).toList(),
       jokeLanguages: (json['jokeLanguages'] as num).toInt(),
@@ -18,7 +18,7 @@ InfoResponse _$InfoResponseFromJson(Map<String, dynamic> json) => InfoResponse(
       timestamp: (json['timestamp'] as num).toInt(),
     );
 
-Jokes _$JokesFromJson(Map<String, dynamic> json) => Jokes(
+JokesInfo _$JokesInfoFromJson(Map<String, dynamic> json) => JokesInfo(
       totalCount: (json['totalCount'] as num).toInt(),
       categories: (json['categories'] as List<dynamic>)
           .map((e) => e as String)
