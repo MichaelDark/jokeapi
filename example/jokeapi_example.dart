@@ -1,21 +1,21 @@
-import 'dart:convert';
-
 import 'package:jokeapi/jokeapi.dart';
 
 void main() async {
-  final apiClient = JokeApiClient();
+  final jokeApi = JokeApi();
 
-  final jokeSingle = await fetchJoke(apiClient, JokeType.single);
-  final jokeTwoPart = await fetchJoke(apiClient, JokeType.twopart);
+  final jokes = [
+    ...(await jokeApi.getJokes(type: JokeType.single)).jokes,
+    ...(await jokeApi.getJokes(type: JokeType.twoPart)).jokes,
+    ...(await jokeApi.getJokes(amount: 10)).jokes,
+  ];
 
-  print(jokeSingle.toString());
-  print(jokeTwoPart.toString());
-}
-
-Future<Joke> fetchJoke(JokeApiClient client, JokeType type) async {
-  final response = await client.makeRequest(
-    JokeRequest(type: JokeTypeQueryParam(type)),
-  );
-  final map = json.decode(response.body);
-  return Joke.fromJson(map);
+  for (final joke in jokes) {
+    switch (joke) {
+      case SingleJoke():
+        print(joke.joke);
+      case TwoPartJoke():
+        print(joke.setup);
+        print(joke.delivery);
+    }
+  }
 }

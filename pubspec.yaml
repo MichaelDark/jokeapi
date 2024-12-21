@@ -1,19 +1,19 @@
 name: jokeapi
-version: 0.1.0
-description: API wrapper for jokeapi.dev
+version: 1.0.0
+description: Get various jokes from JokeAPI without any API token, membership, registration or payment.
 repository: https://github.com/MichaelDark/jokeapi
 
 environment:
-  sdk: '>=2.17.0 <3.0.0'
+  sdk: ">=3.5.0 <4.0.0"
 
 dependencies:
   http: ^0.13.4
-  # collection: ^1.15.0
-  # json_annotation: ^4.4.0
-  # recase: ^4.0.0
+  json_annotation: ^4.8.1
+  path: ^1.9.1
 
 dev_dependencies:
   test: ^1.16.0
-  lints: ^1.0.0
-  # build_runner: ^2.1.7
-  # json_serializable: ^6.1.4
+  lints: ^5.0.0
+
+  build_runner: ^2.4.6
+  json_serializable: ^6.9.0
